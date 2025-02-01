@@ -13,20 +13,31 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	Badge,
+	Tooltip,
 } from '@mui/material';
 import {
 	Menu as MenuIcon,
 	ChevronLeft as ChevronLeftIcon,
 	ChevronRight as ChevronRightIcon,
-	MoveToInbox as InboxIcon,
-	Mail as MailIcon,
-	Notifications as NotificationsIcon,
+	Translate,
+	DarkMode,
+	LightMode,
+	Login,
+	BookmarkAdd,
+	AccountCircle,
+	Logout,
+	People,
+	Badge,
+	Engineering,
+	ShoppingCart,
 } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLoading, setTheme } from '../../store/reducers/GlobalReducer';
+import { setTheme } from '../../store/reducers/GlobalReducer';
+import { useTranslation } from 'react-i18next';
+import { BOTTOM_MENU, TOP_MENU } from './navigationConstants';
+import { useNavigate } from 'react-router-dom';
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const openedMixin = (theme) => ({
 	width: drawerWidth,
@@ -104,12 +115,49 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 	],
 }));
 
+const RenderIcon = (props) => {
+	switch (props?.icon) {
+		case 'BookmarkAdd':
+			return <BookmarkAdd />;
+		case 'ShoppingCart':
+			return <ShoppingCart />;
+		case 'Badge':
+			return <Badge />;
+		case 'People':
+			return <People />;
+		case 'Login':
+			return <Login />;
+		case 'AccountCircle':
+			return <AccountCircle />;
+		case 'Engineering':
+			return <Engineering />;
+		case 'Logout':
+			return <Logout />;
+		default:
+			return null;
+	}
+};
+
 const Navigation = (props) => {
 	const dispatch = useDispatch();
 	const theme = useTheme();
-
+	const navigate = useNavigate();
+	const {
+		i18n: { changeLanguage, language },
+	} = useTranslation();
+	const [currentLanguage, setCurrentLanguage] = useState(language);
 	const [open, setOpen] = useState(false);
 	const themeMode = useSelector((state) => state?.global?.theme);
+
+	const handleChangeLanguage = () => {
+		const newLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+		setCurrentLanguage(newLanguage);
+		changeLanguage(newLanguage);
+	};
+
+	const handleNavigation = (url) => {
+		if (url) navigate(url);
+	};
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -121,10 +169,6 @@ const Navigation = (props) => {
 
 	const toggleTheme = () => {
 		dispatch(setTheme(themeMode === 'dark' ? 'light' : 'dark'));
-	};
-
-	const openLoading = () => {
-		dispatch(setLoading(true));
 	};
 
 	return (
@@ -139,21 +183,29 @@ const Navigation = (props) => {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap component="div">
+					<Typography
+						variant="h6"
+						noWrap
+						component="div"
+						sx={{ cursor: 'pointer' }}
+						onClick={() => {
+							handleNavigation('/');
+						}}
+					>
 						SMH
 					</Typography>
 					<Box sx={{ flexGrow: 1 }} />
-					<Box sx={{ display: 'flex' }}>
-						<IconButton size="large" color="inherit" onClick={openLoading}>
-							<Badge badgeContent={4} color="error">
-								<MailIcon />
-							</Badge>
-						</IconButton>
-						<IconButton size="large" color="inherit" onClick={toggleTheme}>
-							<Badge badgeContent={17} color="error">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton>
+					<Box sx={{ display: 'flex', gap: 0.5 }}>
+						<Tooltip title={`Translate to ${currentLanguage === 'en' ? 'hi' : 'en'}`}>
+							<IconButton size="large" color="inherit" onClick={handleChangeLanguage}>
+								<Translate />
+							</IconButton>
+						</Tooltip>
+						<Tooltip title="Toggle theme">
+							<IconButton size="large" color="inherit" onClick={toggleTheme}>
+								{themeMode === 'dark' ? <DarkMode /> : <LightMode />}
+							</IconButton>
+						</Tooltip>
 					</Box>
 				</Toolbar>
 			</AppBar>
@@ -165,25 +217,43 @@ const Navigation = (props) => {
 				</DrawerHeader>
 				<Divider />
 				<List>
-					<ListItem key="Inbox" disablePadding sx={{ display: 'block' }}>
-						<ListItemButton sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}>
-							<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
-								<InboxIcon />
-							</ListItemIcon>
-							<ListItemText primary="Inbox" sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
-						</ListItemButton>
-					</ListItem>
+					{TOP_MENU?.map((item) => (
+						<ListItem key={item?.key} disablePadding sx={{ display: 'block' }}>
+							<Tooltip title={item?.tooltipTitle} placement="right">
+								<ListItemButton
+									sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}
+									onClick={() => {
+										handleNavigation(item?.url);
+									}}
+								>
+									<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
+										<RenderIcon icon={item?.icon} />
+									</ListItemIcon>
+									<ListItemText primary={item?.text} sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
+								</ListItemButton>
+							</Tooltip>
+						</ListItem>
+					))}
 				</List>
-				<Divider />
+				<Box sx={{ flexGrow: 1 }} />
 				<List>
-					<ListItem key="All mail" disablePadding sx={{ display: 'block' }}>
-						<ListItemButton sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}>
-							<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
-								<InboxIcon />
-							</ListItemIcon>
-							<ListItemText primary="All mail" sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
-						</ListItemButton>
-					</ListItem>
+					{BOTTOM_MENU?.map((item) => (
+						<ListItem key={item?.key} disablePadding sx={{ display: 'block' }}>
+							<Tooltip title={item?.tooltipTitle} placement="right">
+								<ListItemButton
+									sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}
+									onClick={() => {
+										handleNavigation(item?.url);
+									}}
+								>
+									<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
+										<RenderIcon icon={item?.icon} />
+									</ListItemIcon>
+									<ListItemText primary={item?.text} sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
+								</ListItemButton>
+							</Tooltip>
+						</ListItem>
+					))}
 				</List>
 			</Drawer>
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
