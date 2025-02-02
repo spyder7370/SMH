@@ -171,7 +171,6 @@ const Navigation = (props) => {
 
 	const toggleTheme = () => {
 		dispatch(setTheme(themeMode === 'dark' ? 'light' : 'dark'));
-		sendToast(ToastType.SUCCESS, 'Successfully toggled theme');
 	};
 
 	const handleNavigation = (url) => {
@@ -187,7 +186,7 @@ const Navigation = (props) => {
 
 	return (
 		<Box sx={{ display: 'flex' }}>
-			<AppBar position="fixed" open={open} color="inherit">
+			<AppBar position="fixed" open={open} color="transparent" sx={{ backdropFilter: 'blur(8px)' }}>
 				<Toolbar>
 					<IconButton
 						color="inherit"
