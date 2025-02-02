@@ -30,12 +30,15 @@ import {
 	Badge,
 	Engineering,
 	ShoppingCart,
+	PersonAdd,
 } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from '../../store/reducers/GlobalReducer';
+import { setLoading, setTheme } from '../../store/reducers/GlobalReducer';
 import { useTranslation } from 'react-i18next';
 import { BOTTOM_MENU, TOP_MENU } from './navigationConstants';
 import { useNavigate } from 'react-router-dom';
+import { sendToast, ToastType } from '../../components/toast';
+import { logoutUser } from '../../utils/auth';
 
 const drawerWidth = 260;
 
@@ -133,6 +136,8 @@ const RenderIcon = (props) => {
 			return <Engineering />;
 		case 'Logout':
 			return <Logout />;
+		case 'PersonAdd':
+			return <PersonAdd />;
 		default:
 			return null;
 	}
@@ -153,10 +158,7 @@ const Navigation = (props) => {
 		const newLanguage = currentLanguage === 'en' ? 'hi' : 'en';
 		setCurrentLanguage(newLanguage);
 		changeLanguage(newLanguage);
-	};
-
-	const handleNavigation = (url) => {
-		if (url) navigate(url);
+		sendToast(ToastType.SUCCESS, 'Successfully changed language');
 	};
 
 	const handleDrawerOpen = () => {
@@ -169,6 +171,18 @@ const Navigation = (props) => {
 
 	const toggleTheme = () => {
 		dispatch(setTheme(themeMode === 'dark' ? 'light' : 'dark'));
+		sendToast(ToastType.SUCCESS, 'Successfully toggled theme');
+	};
+
+	const handleNavigation = (url) => {
+		if (url === '/logout') {
+			dispatch(setLoading(true));
+			logoutUser();
+			dispatch(setLoading(false));
+			sendToast(ToastType.SUCCESS);
+			navigate('/');
+		} else if (url) navigate(url);
+		handleDrawerClose();
 	};
 
 	return (

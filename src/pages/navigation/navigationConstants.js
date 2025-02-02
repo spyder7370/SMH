@@ -37,6 +37,13 @@ export const BOTTOM_MENU = [
 		icon: 'Login',
 	},
 	{
+		key: 'Register',
+		tooltipTitle: 'Register',
+		url: '/register',
+		text: 'Register',
+		icon: 'PersonAdd',
+	},
+	{
 		key: 'View profile',
 		tooltipTitle: 'View profile',
 		url: '/profile',

@@ -1,0 +1,44 @@
+@use '../../App.scss';
+
+.Container {
+	width: 30%;
+	margin: auto;
+}
+
+.HeadingText {
+	@extend .Font-Family-Extra-Light;
+	text-align: center;
+}
+
+.TextField {
+	margin: 2rem 0;
+}
+
+.SubLinks {
+	display: inline;
+}
+
+.SubLinks:hover {
+	text-decoration: underline;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.Container {
+		width: 80%;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.Container {
+		width: 60%;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.Container {
+		width: 30%;
+	}
+}
