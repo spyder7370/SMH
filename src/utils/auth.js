@@ -30,7 +30,10 @@ export const logoutUser = () => {
 		if (!isCookiePresent('token')) return;
 		removeCookie('token');
 	} catch {
-		sendToast(ToastType.ERROR, 'Logout failed, please contact an administrator');
+		sendToast(
+			ToastType.ERROR,
+			'Logout failed, please contact an administrator'
+		);
 	} finally {
 		sendToast(ToastType.SUCCESS, 'You have successfully logged out');
 	}

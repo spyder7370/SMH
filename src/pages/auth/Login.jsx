@@ -5,11 +5,24 @@ import styles from './Auth.module.scss';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../utils/auth';
-import { setLoading } from '../../store/reducers/GlobalReducer';
+import {
+	disablefooterBg,
+	enablefooterBg,
+	setLoading,
+} from '../../store/reducers/GlobalReducer';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Login() {
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(enablefooterBg());
+		return () => {
+			dispatch(disablefooterBg());
+		};
+	});
+
 	// const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
@@ -17,7 +30,9 @@ function Login() {
 			Password: '',
 		},
 		validationSchema: Yup.object({
-			Email: Yup.string().email('Invalid email address.').required('No input provided.'),
+			Email: Yup.string()
+				.email('Invalid email address.')
+				.required('No input provided.'),
 			Password: Yup.string().required('No password provided.'),
 		}),
 		onSubmit: (values) => {
@@ -61,7 +76,11 @@ function Login() {
 						variant="standard"
 						{...formik.getFieldProps('Email')}
 						error={!!(formik.touched.Email && formik.errors.Email)}
-						helperText={formik.touched.Email && formik.errors.Email ? formik.errors.Email : null}
+						helperText={
+							formik.touched.Email && formik.errors.Email
+								? formik.errors.Email
+								: null
+						}
 					/>
 				</div>
 				<div className={styles.TextField}>
@@ -73,7 +92,11 @@ function Login() {
 						variant="standard"
 						{...formik.getFieldProps('Password')}
 						error={!!(formik.touched.Password && formik.errors.Password)}
-						helperText={formik.touched.Password && formik.errors.Password ? formik.errors.Password : null}
+						helperText={
+							formik.touched.Password && formik.errors.Password
+								? formik.errors.Password
+								: null
+						}
 					/>
 				</div>
 				<div>

@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import GlobalLoading from './pages/globalLoading';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/notFound';
+import Footer from './pages/footer/Footer';
 
 const Router = () => {
 	const { mode, setMode } = useColorScheme();
@@ -41,6 +42,7 @@ const Router = () => {
 						<Route path="/register" element={<Register />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
+					<Footer />
 				</Navigation>
 			</>
 		)

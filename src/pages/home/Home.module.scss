@@ -1,0 +1,28 @@
+@use '../../App.scss';
+
+.Heading {
+	@extend .Font-Family-Medium;
+	margin: 1.5rem 0 !important;
+}
+
+.HeroContainer {
+	padding: 10% 0;
+}
+
+.HeroImage {
+	height: 100%;
+	background-image: url('https://demo.awaikenthemes.com/theme-medipro/wp-content/uploads/2024/05/white-dots-img.png');
+	background-position: 100% 0%;
+	background-repeat: no-repeat;
+	background-size: 65% auto;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.HeroImage img {
+	border: 1px solid transparent;
+	border-radius: 15%;
+}

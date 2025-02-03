@@ -95,7 +95,9 @@ const AppBar = styled(MuiAppBar, {
 	],
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme }) => ({
+const Drawer = styled(MuiDrawer, {
+	shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme }) => ({
 	width: drawerWidth,
 	flexShrink: 0,
 	whiteSpace: 'nowrap',
@@ -186,13 +188,21 @@ const Navigation = (props) => {
 
 	return (
 		<Box sx={{ display: 'flex' }}>
-			<AppBar position="fixed" open={open} color="transparent" sx={{ backdropFilter: 'blur(8px)' }}>
+			<AppBar
+				position="fixed"
+				open={open}
+				color="transparent"
+				sx={{ backdropFilter: 'blur(8px)' }}
+			>
 				<Toolbar>
 					<IconButton
 						color="inherit"
 						onClick={handleDrawerOpen}
 						edge="start"
-						sx={[{ marginRight: 5, marginLeft: { xs: 0.4, md: -0.4 } }, open && { display: 'none' }]}
+						sx={[
+							{ marginRight: 5, marginLeft: { xs: 0.4, md: -0.4 } },
+							open && { display: 'none' },
+						]}
 					>
 						<MenuIcon />
 					</IconButton>
@@ -209,8 +219,14 @@ const Navigation = (props) => {
 					</Typography>
 					<Box sx={{ flexGrow: 1 }} />
 					<Box sx={{ display: 'flex', gap: 0.5 }}>
-						<Tooltip title={`Translate to ${currentLanguage === 'en' ? 'hi' : 'en'}`}>
-							<IconButton size="large" color="inherit" onClick={handleChangeLanguage}>
+						<Tooltip
+							title={`Translate to ${currentLanguage === 'en' ? 'hi' : 'en'}`}
+						>
+							<IconButton
+								size="large"
+								color="inherit"
+								onClick={handleChangeLanguage}
+							>
 								<Translate />
 							</IconButton>
 						</Tooltip>
@@ -225,7 +241,11 @@ const Navigation = (props) => {
 			<Drawer variant="permanent" open={open}>
 				<DrawerHeader>
 					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+						{theme.direction === 'rtl' ? (
+							<ChevronRightIcon />
+						) : (
+							<ChevronLeftIcon />
+						)}
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
@@ -234,15 +254,26 @@ const Navigation = (props) => {
 						<ListItem key={item?.key} disablePadding sx={{ display: 'block' }}>
 							<Tooltip title={item?.tooltipTitle} placement="right">
 								<ListItemButton
-									sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}
+									sx={[
+										{ minHeight: 48, px: 3.5 },
+										{ justifyContent: 'initial' },
+									]}
 									onClick={() => {
 										handleNavigation(item?.url);
 									}}
 								>
-									<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
+									<ListItemIcon
+										sx={[
+											{ minWidth: 0, justifyContent: 'center' },
+											open ? { mr: 3 } : { mr: 'auto' },
+										]}
+									>
 										<RenderIcon icon={item?.icon} />
 									</ListItemIcon>
-									<ListItemText primary={item?.text} sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
+									<ListItemText
+										primary={item?.text}
+										sx={[open ? { opacity: 1 } : { opacity: 0 }]}
+									/>
 								</ListItemButton>
 							</Tooltip>
 						</ListItem>
@@ -254,22 +285,33 @@ const Navigation = (props) => {
 						<ListItem key={item?.key} disablePadding sx={{ display: 'block' }}>
 							<Tooltip title={item?.tooltipTitle} placement="right">
 								<ListItemButton
-									sx={[{ minHeight: 48, px: 3.5 }, { justifyContent: 'initial' }]}
+									sx={[
+										{ minHeight: 48, px: 3.5 },
+										{ justifyContent: 'initial' },
+									]}
 									onClick={() => {
 										handleNavigation(item?.url);
 									}}
 								>
-									<ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
+									<ListItemIcon
+										sx={[
+											{ minWidth: 0, justifyContent: 'center' },
+											open ? { mr: 3 } : { mr: 'auto' },
+										]}
+									>
 										<RenderIcon icon={item?.icon} />
 									</ListItemIcon>
-									<ListItemText primary={item?.text} sx={[open ? { opacity: 1 } : { opacity: 0 }]} />
+									<ListItemText
+										primary={item?.text}
+										sx={[open ? { opacity: 1 } : { opacity: 0 }]}
+									/>
 								</ListItemButton>
 							</Tooltip>
 						</ListItem>
 					))}
 				</List>
 			</Drawer>
-			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+			<Box component="main" sx={{ flexGrow: 1 }}>
 				<DrawerHeader />
 				{props?.children}
 			</Box>

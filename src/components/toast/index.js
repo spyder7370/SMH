@@ -19,4 +19,9 @@ export const sendToast = (type, message) => {
 	}
 };
 
-export const ToastType = { INFO: 'info', SUCCESS: 'success', WARNING: 'warning', ERROR: 'error' };
+export const ToastType = {
+	INFO: 'info',
+	SUCCESS: 'success',
+	WARNING: 'warning',
+	ERROR: 'error',
+};

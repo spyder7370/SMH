@@ -6,11 +6,24 @@ import styles from './Auth.module.scss';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../utils/auth';
-import { setLoading } from '../../store/reducers/GlobalReducer';
+import {
+	disablefooterBg,
+	enablefooterBg,
+	setLoading,
+} from '../../store/reducers/GlobalReducer';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Register() {
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(enablefooterBg());
+		return () => {
+			dispatch(disablefooterBg());
+		};
+	});
+
 	// const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
@@ -24,7 +37,9 @@ function Register() {
 				.min(5, 'Must be greater than 5 characters.')
 				.max(50, 'Must be less than 50 characters.')
 				.required('No name provided.'),
-			Email: Yup.string().email('Invalid email address.').required('No email provided.'),
+			Email: Yup.string()
+				.email('Invalid email address.')
+				.required('No email provided.'),
 			Password: Yup.string()
 				.matches(PASSWORD_RULES, {
 					message:
@@ -34,7 +49,10 @@ function Register() {
 						'and 1 numeric digit',
 				})
 				.required('No password provided.'),
-			ConfirmPassword: Yup.string().oneOf([Yup.ref('Password'), ''], 'Passwords must match.'),
+			ConfirmPassword: Yup.string().oneOf(
+				[Yup.ref('Password'), ''],
+				'Passwords must match.'
+			),
 		}),
 		onSubmit: (values) => {
 			logoutUser();
@@ -77,7 +95,11 @@ function Register() {
 						variant="standard"
 						{...formik.getFieldProps('Name')}
 						error={!!(formik.touched.Name && formik.errors.Name)}
-						helperText={formik.touched.Name && formik.errors.Name ? formik.errors.Name : null}
+						helperText={
+							formik.touched.Name && formik.errors.Name
+								? formik.errors.Name
+								: null
+						}
 					/>
 				</div>
 				<div className={styles.TextField}>
@@ -89,7 +111,11 @@ function Register() {
 						variant="standard"
 						{...formik.getFieldProps('Email')}
 						error={!!(formik.touched.Email && formik.errors.Email)}
-						helperText={formik.touched.Email && formik.errors.Email ? formik.errors.Email : null}
+						helperText={
+							formik.touched.Email && formik.errors.Email
+								? formik.errors.Email
+								: null
+						}
 					/>
 				</div>
 				<div className={styles.TextField}>
@@ -101,7 +127,11 @@ function Register() {
 						variant="standard"
 						{...formik.getFieldProps('Password')}
 						error={!!(formik.touched.Password && formik.errors.Password)}
-						helperText={formik.touched.Password && formik.errors.Password ? formik.errors.Password : null}
+						helperText={
+							formik.touched.Password && formik.errors.Password
+								? formik.errors.Password
+								: null
+						}
 					/>
 				</div>
 				<div className={styles.TextField}>
@@ -112,9 +142,15 @@ function Register() {
 						type="password"
 						variant="standard"
 						{...formik.getFieldProps('ConfirmPassword')}
-						error={!!(formik.touched.ConfirmPassword && formik.errors.ConfirmPassword)}
+						error={
+							!!(
+								formik.touched.ConfirmPassword && formik.errors.ConfirmPassword
+							)
+						}
 						helperText={
-							formik.touched.ConfirmPassword && formik.errors.ConfirmPassword ? formik.errors.ConfirmPassword : null
+							formik.touched.ConfirmPassword && formik.errors.ConfirmPassword
+								? formik.errors.ConfirmPassword
+								: null
 						}
 					/>
 				</div>
