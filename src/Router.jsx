@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import GlobalLoading from './pages/globalLoading';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/notFound';
+import Doctors from './pages/doctors/Doctors';
+import DocktorsProfile from './pages/doctors/DoctorsProfile';
 
 const Router = () => {
 	const { mode, setMode } = useColorScheme();
@@ -39,6 +41,8 @@ const Router = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
+						<Route path="/doctors" element={<Doctors />} />
+						<Route path="/doctor/profile/:id" element={<DocktorsProfile />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</Navigation>
