@@ -1,12 +1,36 @@
-import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import Aos from 'aos';
+import { useEffect } from 'react';
+import 'aos/dist/aos.css';
+import {
+	disablefooterBg,
+	enablefooterBg,
+} from '../../store/reducers/GlobalReducer';
+import Hero from './Hero';
+import ServicesCard from './ServicesCard';
+import About from './About';
+import AppointmentBanner from './AppointmentBanner';
+import ContactForm from '../contact/ContactForm';
 
 const Home = () => {
-	const { t } = useTranslation();
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		Aos.init({ disable: 'mobile', startEvent: 'load' });
+		dispatch(enablefooterBg());
+		return () => {
+			dispatch(disablefooterBg());
+		};
+	}, [dispatch]);
 
 	return (
-		<div>
-			Home {import.meta.env.VITE_KEY} {t('welcome')}
-		</div>
+		<>
+			<Hero />
+			<ServicesCard />
+			<About />
+			<AppointmentBanner />
+			<ContactForm />
+		</>
 	);
 };
 

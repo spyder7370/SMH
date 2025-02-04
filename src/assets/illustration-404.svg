@@ -26,7 +26,8 @@
       <stop stop-color="#FFE16A" />
       <stop offset="1" stop-color="#B78103" />
     </linearGradient>
-    <filter id="prefix__filter0_d" x="51" y="49" width="394.621" height="277.611" filterUnits="userSpaceOnUse"
+    <filter id="prefix__filter0_d" x="51" y="49" width="394.621" height="277.611"
+      filterUnits="userSpaceOnUse"
       color-interpolation-filters="sRGB">
       <feFlood flood-opacity="0" result="BackgroundImageFix" />
       <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />

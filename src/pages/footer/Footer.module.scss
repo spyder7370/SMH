@@ -1,0 +1,33 @@
+.FooterContainer {
+	padding: 5% 0;
+}
+
+.FooterCategoryHeader {
+	margin-bottom: 1.5rem !important;
+}
+
+.FooterItemLink {
+	text-decoration: none;
+	color: inherit;
+	margin-bottom: 0.7rem !important;
+	display: block;
+}
+
+.FooterItemLink:hover {
+	text-decoration: underline;
+}
+
+.FooterItemIconGroup {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 0.7rem !important;
+
+	& a {
+		color: inherit;
+	}
+}
+
+.FooterItemIcon {
+	margin-right: 0.5rem;
+}

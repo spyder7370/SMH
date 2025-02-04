@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/notFound';
 import Doctors from './pages/doctors/Doctors';
 import DocktorsProfile from './pages/doctors/DoctorsProfile';
+import Footer from './pages/footer/Footer';
 
 const Router = () => {
 	const { mode, setMode } = useColorScheme();
@@ -45,6 +46,7 @@ const Router = () => {
 						<Route path="/doctor/profile/:id" element={<DocktorsProfile />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
+					<Footer />
 				</Navigation>
 			</>
 		)
