@@ -25,13 +25,18 @@ export const removeCookie = (name) => {
 	cookies.remove(name);
 };
 
-export const logoutUser = () => {
+export const logoutUser = (enableToast = false) => {
 	try {
 		if (!isCookiePresent('token')) return;
 		removeCookie('token');
 	} catch {
-		sendToast(ToastType.ERROR, 'Logout failed, please contact an administrator');
+		if (enableToast)
+			sendToast(
+				ToastType.ERROR,
+				'Logout failed, please contact an administrator'
+			);
 	} finally {
-		sendToast(ToastType.SUCCESS, 'You have successfully logged out');
+		if (enableToast)
+			sendToast(ToastType.SUCCESS, 'You have successfully logged out');
 	}
 };
