@@ -1,0 +1,30 @@
+@use '../../App.scss';
+
+.Container {
+	padding: 10% 0;
+}
+
+.ContactFormHeading {
+	@extend .Font-Family-Medium;
+	@extend .Text-Center;
+	margin-bottom: 2rem !important;
+}
+
+.ContactFormImage {
+	width: 70%;
+	height: auto;
+}
+
+.ContactFormImageSubtitle {
+	padding: 2rem !important;
+}
+
+@media only screen and (max-width: 768px) {
+	.ContactFormSubmitButton {
+		width: 100%;
+	}
+
+	.Container {
+		padding: 15%;
+	}
+}

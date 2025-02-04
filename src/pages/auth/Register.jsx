@@ -1,18 +1,17 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { PASSWORD_RULES } from './authConstants';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from './Auth.module.scss';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../utils/auth';
 import {
 	disablefooterBg,
 	enablefooterBg,
-	setLoading,
 } from '../../store/reducers/GlobalReducer';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import FormikInput from '../../components/formikInput/FormikInput';
 
 function Register() {
 	const dispatch = useDispatch();
@@ -24,7 +23,6 @@ function Register() {
 		};
 	});
 
-	// const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			Name: '',
@@ -49,35 +47,18 @@ function Register() {
 						'and 1 numeric digit',
 				})
 				.required('No password provided.'),
-			ConfirmPassword: Yup.string().oneOf(
-				[Yup.ref('Password'), ''],
-				'Passwords must match.'
-			),
+			ConfirmPassword: Yup.string()
+				.oneOf([Yup.ref('Password'), ''], 'Passwords must match.')
+				.required('Please enter the password again'),
 		}),
 		onSubmit: (values) => {
 			logoutUser();
 			const body = {
-				username: values.Name,
-				email: values.Email,
-				password: values.Password,
+				username: values?.Name,
+				email: values?.Email,
+				password: values?.Password,
 			};
 			console.log(body);
-
-			dispatch(setLoading(true));
-			dispatch(setLoading(false));
-			// registerUser(body)
-			// 	.then((res) => {
-			// 		if (res?.data?.data) {
-			// 			dispatch(
-			// 				setToastMessage({
-			// 					toastMessage: 'The account has been created successfully, welcome to Stackr',
-			// 					toastType: 'success',
-			// 				})
-			// 			);
-			// 			navigate('/');
-			// 		}
-			// 	})
-			// 	.finally(() => dispatch(setApplicationLoading(false)));
 		},
 	});
 
@@ -88,75 +69,47 @@ function Register() {
 			</Typography>
 			<form onSubmit={formik.handleSubmit} id="login-form">
 				<div className={styles.TextField}>
-					<TextField
-						fullWidth
+					<FormikInput
+						formik={formik}
 						id="Name"
 						label="Name"
 						variant="standard"
-						{...formik.getFieldProps('Name')}
-						error={!!(formik.touched.Name && formik.errors.Name)}
-						helperText={
-							formik.touched.Name && formik.errors.Name
-								? formik.errors.Name
-								: null
-						}
+						fullWidth
 					/>
 				</div>
 				<div className={styles.TextField}>
-					<TextField
-						fullWidth
+					<FormikInput
+						formik={formik}
 						id="Email"
 						label="Email"
 						type="email"
 						variant="standard"
-						{...formik.getFieldProps('Email')}
-						error={!!(formik.touched.Email && formik.errors.Email)}
-						helperText={
-							formik.touched.Email && formik.errors.Email
-								? formik.errors.Email
-								: null
-						}
+						fullWidth
 					/>
 				</div>
 				<div className={styles.TextField}>
-					<TextField
-						fullWidth
+					<FormikInput
+						formik={formik}
 						id="Password"
 						label="Password"
 						type="password"
 						variant="standard"
-						{...formik.getFieldProps('Password')}
-						error={!!(formik.touched.Password && formik.errors.Password)}
-						helperText={
-							formik.touched.Password && formik.errors.Password
-								? formik.errors.Password
-								: null
-						}
+						fullWidth
 					/>
 				</div>
 				<div className={styles.TextField}>
-					<TextField
-						fullWidth
+					<FormikInput
+						formik={formik}
 						id="ConfirmPassword"
 						label="Confirm Password"
 						type="password"
 						variant="standard"
-						{...formik.getFieldProps('ConfirmPassword')}
-						error={
-							!!(
-								formik.touched.ConfirmPassword && formik.errors.ConfirmPassword
-							)
-						}
-						helperText={
-							formik.touched.ConfirmPassword && formik.errors.ConfirmPassword
-								? formik.errors.ConfirmPassword
-								: null
-						}
+						fullWidth
 					/>
 				</div>
 				<div>
 					Already have an account?{' '}
-					<Link style={{ textDecoration: 'none' }} to="/login">
+					<Link className={styles['Text-Decoration-None']} to="/login">
 						<Typography color="primary" className={styles.SubLinks}>
 							Login
 						</Typography>{' '}

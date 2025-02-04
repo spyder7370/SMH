@@ -9,9 +9,16 @@
 	padding: 10% 0;
 }
 
+.HeroContainerSmall {
+	padding: 5% 0;
+}
+
+.HeroContainerNoTop {
+	padding-bottom: 10%;
+}
+
 .HeroImage {
 	height: 100%;
-	background-image: url('https://demo.awaikenthemes.com/theme-medipro/wp-content/uploads/2024/05/white-dots-img.png');
 	background-position: 100% 0%;
 	background-repeat: no-repeat;
 	background-size: 65% auto;
@@ -25,4 +32,130 @@
 .HeroImage img {
 	border: 1px solid transparent;
 	border-radius: 15%;
+}
+.TextField {
+	margin: 2rem 0;
+}
+
+.ServicesCard {
+	border-radius: 0 !important;
+	padding: 2rem;
+	flex-grow: 1;
+}
+
+.AppointmentServiceCardActions {
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.AppointmentServiceCardButton {
+	margin-left: 2px;
+}
+
+.ServicesCardHeading {
+	margin: 0.8rem 0 !important;
+}
+
+.AboutBackground {
+	height: 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	position: relative;
+}
+
+.AboutSuperTitle {
+	text-align: start;
+}
+
+.AboutImage {
+	border: 1px solid transparent;
+	border-radius: 15%;
+	height: auto;
+	width: 40%;
+	position: absolute;
+}
+
+.AboutImage1 {
+	@extend .AboutImage;
+	top: 0;
+	right: 5%;
+}
+
+.AboutImage2 {
+	@extend .AboutImage;
+	bottom: 0;
+	left: 5%;
+}
+
+.AboutChecklist {
+	@extend .Font-Weight-Bold;
+	display: flex;
+	align-items: center;
+	margin-top: 1rem !important;
+}
+
+.AboutChecklistIcon {
+	margin-right: 0.5rem;
+}
+
+.AppointmentBannerContainer {
+	@extend .Display-Flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 7%;
+}
+
+.AppointmentBannerContent {
+	@extend .AppointmentBannerContainer;
+	justify-content: start;
+	gap: 3rem;
+}
+
+.AppointmentBannerActionIcon {
+	margin-left: 1.5rem;
+}
+
+/* XS, SM and Medium devices (768px and down) */
+@media only screen and (max-width: 768px) {
+	.AppointmentBannerContainer {
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.AppointmentBannerContent {
+		& div:first-child {
+			display: flex;
+			justify-content: center;
+			& img {
+				width: 50%;
+			}
+		}
+	}
+
+	.AboutSuperTitle {
+		text-align: center;
+	}
+
+	.AboutImage {
+		position: inherit;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+	}
+
+	.AboutBackground {
+		display: flex;
+		justify-content: space-around;
+	}
+
+	.HeroContainerSmall {
+		padding: 15%;
+	}
+
+	.HeroContainerNoTop {
+		padding: 0 15% 15% 15%;
+	}
 }
