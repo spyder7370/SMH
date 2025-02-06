@@ -10,6 +10,7 @@ import {
 	Engineering,
 	ShoppingCart,
 	PersonAdd,
+	LocalPhone,
 } from '@mui/icons-material';
 
 const drawerWidth = 260;
@@ -109,6 +110,8 @@ export const RenderIcon = (props) => {
 			return <Logout />;
 		case 'PersonAdd':
 			return <PersonAdd />;
+		case 'LocalPhone':
+			return <LocalPhone />;
 		default:
 			return null;
 	}

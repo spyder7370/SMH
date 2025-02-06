@@ -51,7 +51,7 @@ const ServicesCard = () => {
 									component="div"
 								>
 									{`Don't `}
-									<span className={styles['Font-Weight-Bold']}>
+									<span className={styles['Font-Family-Medium']}>
 										Hesitate
 									</span>{' '}
 									To Contact us

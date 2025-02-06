@@ -9,9 +9,12 @@ import { useEffect } from 'react';
 import GlobalLoading from './pages/globalLoading';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './pages/notFound';
-import Doctors from './pages/doctors/Doctors';
-import DocktorsProfile from './pages/doctors/DoctorsProfile';
-import Footer from './pages/footer/Footer';
+import Doctors from './pages/doctor';
+import DoctorsProfile from './pages/doctor/DoctorsProfile';
+import Staff from './pages/staff';
+import Footer from './pages/footer';
+import Booking from './pages/booking';
+import Contact from './pages/contact';
 
 const Router = () => {
 	const { mode, setMode } = useColorScheme();
@@ -43,7 +46,10 @@ const Router = () => {
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/doctors" element={<Doctors />} />
-						<Route path="/doctor/profile/:id" element={<DocktorsProfile />} />
+						<Route path="/doctor/profile/:id" element={<DoctorsProfile />} />
+						<Route path="/staff" element={<Staff />} />
+						<Route path="/book" element={<Booking />} />
+						<Route path="/contact" element={<Contact />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 					<Footer />

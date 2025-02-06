@@ -10,7 +10,7 @@ import {
 } from '../../store/reducers/GlobalReducer';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import FormikInput from '../../components/formikInput/FormikInput';
+import FormikInput from '../../components/formikInput';
 
 function Login() {
 	const dispatch = useDispatch();

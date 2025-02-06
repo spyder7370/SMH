@@ -3,15 +3,12 @@ import styles from './Home.module.scss';
 import { Container, Grid2 as Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import HospitalImage from '../../assets/sharda-crop.png';
-import DotBackgroundWhite from '../../assets/dot-bg-white.png';
-import DotBackgroundBlack from '../../assets/dot-bg-black.png';
+import DoctorImage from '../../assets/doctor-1.png';
 
 const Hero = () => {
 	const { t } = useTranslation();
 	const theme = useSelector((state) => state?.global?.theme);
 	const themeGradient = useSelector((state) => state?.global?.themeGradient);
-	const dotBackground =
-		theme === 'light' ? DotBackgroundBlack : DotBackgroundWhite;
 
 	return (
 		<div
@@ -53,13 +50,11 @@ const Hero = () => {
 						size={{ lg: 7, md: 5, sm: 12, xs: 12 }}
 					>
 						<div
-							className={styles.HeroImage}
-							style={{ backgroundImage: `url('${dotBackground}')` }}
+							className={
+								theme === 'light' ? styles.HeroImageLight : styles.HeroImageDark
+							}
 						>
-							<img
-								src="https://demo.awaikenthemes.com/theme-medipro/wp-content/uploads/2024/05/hero-img-1.jpg"
-								alt="head"
-							/>
+							<img src={DoctorImage} alt="head" />
 						</div>
 					</Grid>
 				</Grid>

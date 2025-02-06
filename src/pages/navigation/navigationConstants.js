@@ -27,6 +27,13 @@ export const TOP_MENU = [
 		text: 'Staff',
 		icon: 'People',
 	},
+	{
+		key: 'Contact',
+		tooltipTitle: 'Contact Us',
+		url: '/contact',
+		text: 'Contact Us',
+		icon: 'LocalPhone',
+	},
 ];
 export const BOTTOM_MENU = [
 	{

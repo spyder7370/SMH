@@ -1,6 +1,5 @@
 import { Box, Grid2, Typography } from '@mui/material';
 // import {  } from "react-router-dom";
-import './doctors.css';
 import { DateCalendar } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 
@@ -10,12 +9,21 @@ function DocktorsProfile() {
 	const position = 'Senior Director';
 	const speciality = 'Breast Cancer';
 	const departments = ['Breast Cancer'];
-	const education = ['Fellowship(Surgical Oncology)', 'Senior Resident(cancer Surgery)', 'M. S.(Surgery) , M.B.B.S.'];
+	const education = [
+		'Fellowship(Surgical Oncology)',
+		'Senior Resident(cancer Surgery)',
+		'M. S.(Surgery) , M.B.B.S.',
+	];
 	const imageUrl = '../../src/assets/doctor_images.png';
 	// const dateSlots = {"2025-01-25":{1:[["9:30","9:40"]]}}
 	return (
 		<Box sx={{ borderRadius: 10 }}>
-			<Grid2 container spacing={{ xs: 2, md: 3 }} columns={12} sx={{ backgroundColor: '#F6F6F6' }}>
+			<Grid2
+				container
+				spacing={{ xs: 2, md: 3 }}
+				columns={12}
+				sx={{ backgroundColor: '#F6F6F6' }}
+			>
 				<Grid2 key="Doctor_profile">
 					<img title={`${name}`} height={400} width={500} src={imageUrl} />
 				</Grid2>

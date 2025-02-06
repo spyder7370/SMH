@@ -80,7 +80,7 @@ const Navigation = (props) => {
 	const handleNavigation = (url) => {
 		if (url === '/logout') {
 			dispatch(setLoading(true));
-			logoutUser();
+			logoutUser(true);
 			dispatch(setLoading(false));
 			sendToast(ToastType.SUCCESS);
 			navigate('/');
