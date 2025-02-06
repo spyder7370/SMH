@@ -17,6 +17,9 @@ import {
 	disablefooterBg,
 	enablefooterBg,
 } from '../../store/reducers/GlobalReducer';
+import Doctor1Image from '../../assets/doctor-1.png';
+import Doctor2Image from '../../assets/doctor-2.png';
+import DoctorImage from '../../assets/doctor_images.png';
 
 function Doctors() {
 	const navigate = useNavigate();
@@ -52,10 +55,10 @@ function Doctors() {
 									}}
 									image={
 										index === 0
-											? '../src/assets/doctor-1.png'
+											? Doctor1Image
 											: index === 1
-												? '../src/assets/doctor-2.png'
-												: '../src/assets/doctor_images.jpg'
+												? Doctor2Image
+												: DoctorImage
 									}
 								/>
 								<CardContent>

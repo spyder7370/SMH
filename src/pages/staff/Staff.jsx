@@ -16,6 +16,7 @@ import {
 	disablefooterBg,
 	enablefooterBg,
 } from '../../store/reducers/GlobalReducer';
+import DoctorImage from '../../assets/doctor_images.png';
 
 const Staff = () => {
 	const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const Staff = () => {
 										backgroundPosition: 'top',
 										borderRadius: '5%',
 									}}
-									image="../src/assets/doctor_images.jpg"
+									image={DoctorImage}
 								/>
 								<CardContent>
 									<Typography color="primary" variant="subtitle2">
