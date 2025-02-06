@@ -16,12 +16,13 @@ const Home = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		Aos.init({ disable: 'mobile', startEvent: 'load' });
+		Aos.init({ disable: 'mobile' });
+		Aos.refreshHard();
 		dispatch(enablefooterBg());
 		return () => {
 			dispatch(disablefooterBg());
 		};
-	}, [dispatch]);
+	});
 
 	return (
 		<>
